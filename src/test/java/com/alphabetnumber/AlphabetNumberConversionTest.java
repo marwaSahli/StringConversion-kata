@@ -1,5 +1,6 @@
-package com;
+package com.alphabetnumber;
 
+import com.alphabetnumber.AlphabetNumberConversion;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
