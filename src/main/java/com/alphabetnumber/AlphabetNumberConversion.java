@@ -1,18 +1,21 @@
 package com.alphabetnumber;
 
 
-import com.alphabetnumber.converters.CharToNumberConverter;
+import com.alphabetnumber.converters.StringConverter;
+import com.alphabetnumber.validator.ConversionValidator;
 
-/**
- * Hello world!
- *
- */
+
 public class AlphabetNumberConversion
 {
 
-    public int convertCharToNumber(char character) {
+    private final ConversionValidator validator = new ConversionValidator();
+    private final StringConverter converter = new StringConverter();
 
-        CharToNumberConverter ctnc = new CharToNumberConverter();
-        return  ctnc.convertChartToNumber(character);
+    public String InvertElementsOfString(String structureToInvert){
+        if(validator.checkStringConversionEligibility(structureToInvert)){
+            return  converter.invertStringValues(structureToInvert);
+        } else {
+            return  "String not valid!";
+        }
     }
 }

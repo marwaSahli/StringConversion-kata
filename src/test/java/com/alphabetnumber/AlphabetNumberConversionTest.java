@@ -1,6 +1,5 @@
 package com.alphabetnumber;
 
-import com.alphabetnumber.AlphabetNumberConversion;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -17,14 +16,23 @@ public class AlphabetNumberConversionTest
     @Before
     public void setup(){
         anc = new AlphabetNumberConversion();
+
     }
 
     @Test
-    @Parameters({"a,1",
-            "b,2",
-            "z,26"})
-    public void should_return_character_inverted_to_number(char character, int number){
-        assertThat(anc.convertCharToNumber(character)).isEqualTo(number);
-
+    @Parameters({"1,a",
+            "2,b",
+            "26,z"})
+    public void should_return_number_inverted_to_character(String stringToInvert, String result){
+        assertThat(anc.InvertElementsOfString(stringToInvert)).isEqualTo(result);
     }
+
+    @Test
+    @Parameters({
+            "x252v,String not valid!",
+                "dfr98i,String not valid!"})
+    public void should_test_if_numbers_representing_letters_are_separated_by_letters(String stringToInvert, String result){
+            assertThat(anc.InvertElementsOfString(stringToInvert)).isEqualTo(result);
+    }
+
 }
