@@ -33,12 +33,12 @@ public class StringConversionTest
         assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     @Parameters({
-            "x252v,String not valid!",
-                "dfr98i,String not valid!"})
-    public void should_test_if_numbers_representing_letters_are_separated_by_letters(String stringToInvert, String result){
-            assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
+            "x252v",
+                "dfr98i"})
+    public void should_test_if_numbers_representing_letters_are_separated_by_letters(String stringToInvert){
+            stringConversion.convert(stringToInvert);
     }
 
 }

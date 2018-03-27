@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class ConversionValidator {
 
-    public boolean checkStringConversionEligibility(String value){
+    public boolean isConvertible(String value){
 
         return !findNumbersMoreThanTwentySix(value) && !findNumbersWithTheeDigitsOrMore(value);
     }
