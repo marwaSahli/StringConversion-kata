@@ -11,11 +11,11 @@ public class StringConversion
     private final ConversionValidator validator = new ConversionValidator();
     private final StringConverter converter = new StringConverter();
 
-    public String convert(String structureToInvert) {
-        if(validator.isConvertible(structureToInvert)){
-            return converter.invertStringValues(structureToInvert);
-        } else {
-            throw new RuntimeException("String not valid!");
+    public String convert(String string) {
+        if (!validator.isConvertible(string)) {
+            throw new RuntimeException("String is not valid!");
         }
+
+        return converter.invertStringValues(string);
     }
 }

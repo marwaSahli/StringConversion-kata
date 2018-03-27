@@ -37,7 +37,7 @@ public class StringConversionTest
     @Parameters({
             "x252v",
                 "dfr98i"})
-    public void should_test_if_numbers_representing_letters_are_separated_by_letters(String stringToInvert){
+    public void should_throw_an_error_when_number_greater_than_26_is_detected(String stringToInvert){
             stringConversion.convert(stringToInvert);
     }
 
