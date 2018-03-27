@@ -11,11 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class StringConversionTest
 {
-    private StringConversionTmp stringConversion;
+    private StringConversion stringConversion;
 
     @Before
     public void setup(){
-        stringConversion = new StringConversionTmp();
+        stringConversion = new StringConversion();
     }
 
     @Test
