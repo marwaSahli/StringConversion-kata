@@ -1,19 +1,26 @@
-package com.alphabetnumber.converters;
+package com.alphabetnumber;
 
+
+import com.alphabetnumber.converters.CharConverter;
+import com.alphabetnumber.converters.NumberConverter;
 import com.alphabetnumber.validator.ConversionValidator;
 
-public class StringConverter {
 
+public class StringConversionTmp
+{
 
-    public final CharToNumberConverter charConverter = new CharToNumberConverter();
-    public final NumberToCharConverter numberConverter = new NumberToCharConverter();
-    public final ConversionValidator validator = new ConversionValidator();
+    private final ConversionValidator validator = new ConversionValidator();
+    public final CharConverter charConverter = new CharConverter();
+    public final NumberConverter numberConverter = new NumberConverter();
 
-    public String invertStringValues(String value) {
+    public String convert(String string) {
+        if (!validator.isConvertible(string)) {
+            throw new RuntimeException("String is not valid!");
+        }
 
         String result = "";
         char previousNumericValue = ' ';
-        for (char character : value.toCharArray()) {
+        for (char character : string.toCharArray()) {
             if (!validator.isNumber(character)) {
                 result += charConverter.convert(character);
             } else {
@@ -38,5 +45,4 @@ public class StringConverter {
     private String constructAndConvertNumber(char previousNumericValue, char actualNumericValue) {
         return numberConverter.convert("" + previousNumericValue + actualNumericValue);
     }
-
 }
