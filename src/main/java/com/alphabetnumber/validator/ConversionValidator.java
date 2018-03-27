@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 public class ConversionValidator {
 
     public boolean isConvertible(String value){
-        return !isGreaterThan26(value) && !containsThreeDigitsOrMore(value);
+        return !containsNumberGreaterThan26(value) && !containsThreeDigitsOrMore(value);
     }
 
-    private boolean isGreaterThan26(String value){
+    private boolean containsNumberGreaterThan26(String value){
         Pattern  pattern = Pattern.compile(".*[3-9]\\d|2[7-9].*");
         Matcher matcher = pattern.matcher(value);
         return matcher.find();
