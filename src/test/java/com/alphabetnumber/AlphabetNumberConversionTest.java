@@ -11,20 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class AlphabetNumberConversionTest
 {
-    private AlphabetNumberConversion anc;
+    private StringConversion stringConversion;
 
     @Before
     public void setup(){
-        anc = new AlphabetNumberConversion();
-
+        stringConversion = new StringConversion();
     }
 
     @Test
     @Parameters({"1,a",
             "2,b",
             "26,z"})
-    public void should_return_number_inverted_to_character(String stringToInvert, String result){
-        assertThat(anc.InvertElementsOfString(stringToInvert)).isEqualTo(result);
+    public void should_convert_number_inverted_to_character(String stringToInvert, String result){
+        assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
     }
 
     @Test
@@ -32,7 +31,7 @@ public class AlphabetNumberConversionTest
             "x252v,String not valid!",
                 "dfr98i,String not valid!"})
     public void should_test_if_numbers_representing_letters_are_separated_by_letters(String stringToInvert, String result){
-            assertThat(anc.InvertElementsOfString(stringToInvert)).isEqualTo(result);
+            assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
     }
 
 }
