@@ -15,14 +15,14 @@ public class StringConverter {
         char previousNumericValue = ' ';
         for (char character : value.toCharArray()) {
             if (!validator.isNumber(character)) {
-                result += charConverter.convertChartToNumber(character);
+                result += charConverter.convert(character);
             } else {
                 if (previousNumericValue != ' ') {
                     result = removeLastCharCreatedFromString(result);
                     result += constructAndConvertNumber(previousNumericValue, character);
                     previousNumericValue = ' ';
                 } else {
-                    result += numberConverter.convertNumberToChar(Integer.parseInt(String.valueOf(character)));
+                    result += numberConverter.convert(Integer.parseInt(String.valueOf(character)));
                     previousNumericValue = character;
                 }
             }
@@ -31,17 +31,13 @@ public class StringConverter {
         return result;
     }
 
-
     private String removeLastCharCreatedFromString(String value) {
         return value.substring(0, value.length() - 1);
     }
 
-    private char constructAndConvertNumber(char previousNumericValue, char actualNumericValue) {
-
-        char result = numberConverter.convertNumberToChar(Integer.parseInt(new StringBuilder().
+    private String constructAndConvertNumber(char previousNumericValue, char actualNumericValue) {
+        return numberConverter.convert(Integer.parseInt(new StringBuilder().
                 append(previousNumericValue).append(actualNumericValue).toString()));
-
-        return result;
     }
 
 }
