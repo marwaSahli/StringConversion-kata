@@ -22,7 +22,7 @@ public class StringConverter {
                     result += constructAndConvertNumber(previousNumericValue, character);
                     previousNumericValue = ' ';
                 } else {
-                    result += numberConverter.convert(Integer.parseInt(String.valueOf(character)));
+                    result += numberConverter.convert("" + character);
                     previousNumericValue = character;
                 }
             }
@@ -36,8 +36,7 @@ public class StringConverter {
     }
 
     private String constructAndConvertNumber(char previousNumericValue, char actualNumericValue) {
-        return numberConverter.convert(Integer.parseInt(new StringBuilder().
-                append(previousNumericValue).append(actualNumericValue).toString()));
+        return numberConverter.convert("" + previousNumericValue + actualNumericValue);
     }
 
 }

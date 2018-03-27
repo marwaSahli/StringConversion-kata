@@ -4,7 +4,7 @@ import com.alphabetnumber.Utilities;
 
 public class NumberToCharConverter {
 
-    public String convert(int number) {
-        return "" + Utilities.alphabets[number-1];
+    public String convert(String number) {
+        return "" + Utilities.alphabets[Integer.parseInt(number)-1];
     }
 }
