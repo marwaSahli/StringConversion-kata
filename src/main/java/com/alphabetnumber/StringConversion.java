@@ -22,7 +22,7 @@ public class StringConversion
         char previousNumericValue = ' ';
         for (char character : string.toCharArray()) {
             if (!validator.isNumber(character)) {
-                result += charConverter.convert(character);
+                result += charConverter.convert("" + character);
             } else {
                 if (previousNumericValue != ' ') {
                     result = removeLastCharCreatedFromString(result);
