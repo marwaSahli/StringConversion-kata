@@ -6,36 +6,24 @@ import java.util.regex.Pattern;
 public class ConversionValidator {
 
     public boolean isConvertible(String value){
-
-        return !findNumbersMoreThanTwentySix(value) && !findNumbersWithTheeDigitsOrMore(value);
+        return !isGreaterThan26(value) && !containsThreeDigitsOrMore(value);
     }
 
-    private boolean findNumbersMoreThanTwentySix(String value){
-
-        Pattern pattern;
-        Matcher matcher;
-        pattern = Pattern.compile(".*[3-9]\\d|2[7-9].*");
-
-        matcher = pattern.matcher(value);
-
+    private boolean isGreaterThan26(String value){
+        Pattern  pattern = Pattern.compile(".*[3-9]\\d|2[7-9].*");
+        Matcher matcher = pattern.matcher(value);
         return matcher.find();
     }
 
-    private boolean findNumbersWithTheeDigitsOrMore(String value){
-
-        Pattern pattern;
-        Matcher matcher;
-        pattern = Pattern.compile(".*\\d\\d\\d.*");
-        matcher = pattern.matcher(value);
-
+    private boolean containsThreeDigitsOrMore(String value){
+        Pattern pattern = Pattern.compile(".*\\d\\d\\d.*");
+        Matcher matcher = pattern.matcher(value);
         return matcher.find();
     }
 
-    public Boolean checkIfCharacterIsNumber(Character value){
-        Pattern pattern;
-        Matcher matcher;
-        pattern = Pattern.compile("[0-9]");
-        matcher = pattern.matcher(value.toString());
+    public boolean isNumber(Character value){
+        Pattern pattern = Pattern.compile("[0-9]");
+        Matcher matcher = pattern.matcher(value.toString());
         return matcher.find();
     }
 }

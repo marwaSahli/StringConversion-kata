@@ -41,4 +41,11 @@ public class StringConversionTest
             stringConversion.convert(stringToInvert);
     }
 
+    @Test
+    @Parameters({"?,0",
+            "*,0"})
+    public void should_convert_into_0_when_character_is_not_a_letter_nor_a_number(String stringToInvert, String result){
+        assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
+    }
+
 }
