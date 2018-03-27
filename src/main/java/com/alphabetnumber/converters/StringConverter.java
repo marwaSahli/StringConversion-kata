@@ -12,16 +12,15 @@ public class StringConverter {
     public String invertStringValues(String value){
 
         String result = "";
-        Character previousNumericValue = null;
+        char previousNumericValue = ' ';
        for(char character :value.toCharArray()){
            if(!validator.checkIfCharacterIsNumber(character)){
                result += charConverter.convertChartToNumber(character);
            } else {
-               if(previousNumericValue != null){
+               if(previousNumericValue != ' '){
                    result = removeLastCharCreatedFromString(result);
-                   result += numberConverter.convertNumberToChar(Integer.parseInt(new StringBuilder().
-                           append(previousNumericValue).append(character).toString()));
-                   previousNumericValue = null;
+                   result += constructAndConvertNumber(previousNumericValue, character);
+                   previousNumericValue = ' ';
                } else{
                    result += numberConverter.convertNumberToChar(Integer.parseInt(String.valueOf(character)));
                    previousNumericValue = character;
@@ -36,4 +35,13 @@ public class StringConverter {
     private String removeLastCharCreatedFromString(String value) {
         return value.substring(0, value.length() - 1);
     }
+
+    private char constructAndConvertNumber(char previousNumericValue, char actualNumericValue){
+
+        char result = numberConverter.convertNumberToChar(Integer.parseInt(new StringBuilder().
+                append(previousNumericValue).append(actualNumericValue).toString()));
+
+        return result;
+    }
+
 }
