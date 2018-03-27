@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-public class AlphabetNumberConversionTest
+public class StringConversionTest
 {
     private StringConversion stringConversion;
 
@@ -22,7 +22,14 @@ public class AlphabetNumberConversionTest
     @Parameters({"1,a",
             "2,b",
             "26,z"})
-    public void should_convert_number_inverted_to_character(String stringToInvert, String result){
+    public void should_convert_digits_into_character(String string, String result){
+        assertThat(stringConversion.convert(string)).isEqualTo(result);
+    }
+
+    @Test
+    @Parameters({"a,1",
+            "b,2"})
+    public void should_convert_letters_into_their_index(String stringToInvert, String result){
         assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
     }
 
