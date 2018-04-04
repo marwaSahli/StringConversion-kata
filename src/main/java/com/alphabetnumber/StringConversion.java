@@ -2,47 +2,87 @@ package com.alphabetnumber;
 
 
 import com.alphabetnumber.converters.CharConverter;
+import com.alphabetnumber.converters.Converter;
 import com.alphabetnumber.converters.NumberConverter;
 import com.alphabetnumber.validator.ConversionValidator;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class StringConversion
-{
+import static java.lang.Integer.*;
+
+
+public class StringConversion {
 
     private final ConversionValidator validator = new ConversionValidator();
     public final CharConverter charConverter = new CharConverter();
     public final NumberConverter numberConverter = new NumberConverter();
+    private List<Converter> converters = new ArrayList<Converter>();
+
+    public StringConversion() {
+        converters.add(new CharConverter());
+        converters.add(new NumberConverter());
+    }
 
     public String convert(String string) {
         if (!validator.isConvertible(string)) {
             throw new RuntimeException("String is not valid!");
         }
 
+        Iterable<String> blocks = cutIntoBlocks(string);
         String result = "";
-        char previousNumericValue = ' ';
-        for (char character : string.toCharArray()) {
-            if (!validator.isNumber(character)) {
-                result += charConverter.convert("" + character);
-            } else {
-                if (previousNumericValue != ' ') {
-                    result = removeLastCharCreatedFromString(result);
-                    result += constructAndConvertNumber(previousNumericValue, character);
-                    previousNumericValue = ' ';
-                } else {
-                    result += numberConverter.convert("" + character);
-                    previousNumericValue = character;
-                }
-            }
+        blocks = cutIntoBlocks(string);
+        for(String block :blocks){
+            if(numberConverter.canConvert(block))
+                result += numberConverter.convert(block);
+            else if(charConverter.canConvert(block))
+                result += charConverter.convert(block);
+            else
+                result += '0';
         }
-
         return result;
     }
 
-    private String removeLastCharCreatedFromString(String value) {
-        return value.substring(0, value.length() - 1);
+    private Iterable<String> cutIntoBlocks(String string) {
+
+        List<String> blocks = new ArrayList<String>();
+        char[] characters = string.toCharArray();
+        for (int i = 0; i < characters.length; i++) {
+            char character = characters[i];
+            if (isLetter(character)) {
+                blocks.add(String.valueOf(character));
+            } else if (character == '1' || character == '2') {
+                if (i == characters.length - 1) {
+                    blocks.add(String.valueOf(character));
+                    continue;
+                }
+                char nextChar = characters[i + 1];
+                if (isLetter(nextChar)) {
+                    blocks.add(String.valueOf(character));
+                } else if (isDigit(nextChar)) {
+                    blocks.add(String.valueOf(character) + nextChar);
+                    i++;
+                }
+            } else if (isDigit(character) && parseInt("" + character) >= 3) {
+                blocks.add(String.valueOf(character));
+            } else if (isDigit(character) && parseInt("" + character) == 0) {
+                // ?
+                blocks.add("" +character);
+
+            }else {
+                blocks.add("" +character);
+            }
+        }
+        return blocks;
     }
 
-    private String constructAndConvertNumber(char previousNumericValue, char actualNumericValue) {
-        return numberConverter.convert("" + previousNumericValue + actualNumericValue);
+    private boolean isDigit(char character) {
+        return Character.isDigit(character);
     }
+
+    private boolean isLetter(char character) {
+        return Character.isLetter(character);
+    }
+
+
 }
