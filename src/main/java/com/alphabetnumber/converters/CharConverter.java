@@ -1,6 +1,6 @@
 package com.alphabetnumber.converters;
 
-import com.alphabetnumber.Utilities;
+import com.alphabetnumber.StringConversionUtilities;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +14,7 @@ public class CharConverter implements Converter {
     }
 
     public String convert(String character) {
-        return "" + (new String(Utilities.alphabets).indexOf(character)+1);
+        return "" + (new String(StringConversionUtilities.alphabets).indexOf(character)+1);
     }
 
 }
