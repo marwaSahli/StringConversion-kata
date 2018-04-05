@@ -13,12 +13,10 @@ Numbers representing letters (n <= 26) will always be separated by letters, for 
 
 
 A list named alphabet is preloaded for you: ['a', 'b', 'c', ...]
-A dictionary of letters and their number equivalent is also preloaded for you called  : {'a': '1', 'b': '2', 'c': '3', ...}
 
 ==========================
 
 # Suggested Test
 
 
-With the expression "b8srgv24" , it will print :
-"b8srgv24 Will be inverted like this =======> 2h1918722x"
+With the expression "b8srgv24" , it will print : "2h1918722x"

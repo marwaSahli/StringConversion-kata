@@ -48,4 +48,10 @@ public class StringConversionTest
         assertThat(stringConversion.convert(stringToInvert)).isEqualTo(result);
     }
 
+    @Test
+    @Parameters({"b8srgv24, 2h1918722x"})
+    public void should_convert_letters_into_their_index_and_numbers_into_their_equivalent_letters(String stringToConvert, String result){
+        assertThat(stringConversion.convert(stringToConvert)).isEqualTo(result);
+    }
+
 }

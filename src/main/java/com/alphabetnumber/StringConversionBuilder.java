@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 
 public class StringConversionBuilder {
 
-    private List<Converter> converters = new ArrayList<Converter>();
+    private List<Converter> converters;
 
     public StringConversionBuilder() {
 
@@ -79,7 +79,7 @@ public class StringConversionBuilder {
         return result;
     }
 
-    public String buildConverson(String string){
+    public String buildConversion(String string){
 
         Iterable<String> blocks = cutIntoBlocks(string);
         return convertBlocks(blocks);
