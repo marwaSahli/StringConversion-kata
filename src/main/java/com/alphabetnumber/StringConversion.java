@@ -31,14 +31,20 @@ public class StringConversion {
 
         Iterable<String> blocks = cutIntoBlocks(string);
         String result = "";
+        boolean converted = false;
         blocks = cutIntoBlocks(string);
         for(String block :blocks){
-            if(numberConverter.canConvert(block))
-                result += numberConverter.convert(block);
-            else if(charConverter.canConvert(block))
-                result += charConverter.convert(block);
+            for(Converter converter:converters){
+                if(converter.canConvert(block)){
+                    result += converter.convert(block);
+                    converted = true;
+                    break;
+                }
+            }
+            if(!converted)
+                result += "0";
             else
-                result += '0';
+                converted = false;
         }
         return result;
     }
