@@ -12,7 +12,7 @@ Numbers representing letters (n <= 26) will always be separated by letters, for 
 "dfr9i" may be tested, but not "dfr98i"
 
 
-A list named alphabet is preloaded for you: ['a', 'b', 'c', ...]
+A list named alphabet is pre-loaded for you: ['a', 'b', 'c', ...]
 
 ==========================
 
