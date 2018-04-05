@@ -1,9 +1,6 @@
 package com.alphabetnumber;
 
-import com.alphabetnumber.converters.CharConverter;
 import com.alphabetnumber.converters.Converter;
-import com.alphabetnumber.converters.NumberConverter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class StringConversionBuilder {
         this.converters = StringConversionUtilities.converters;
     }
 
-    private Iterable<String> cutIntoBlocks(String string) {
+    private Iterable<String> cutStringIntoBlocks(String string) {
 
         List<String> blocks = new ArrayList<String>();
         char[] characters = string.toCharArray();
@@ -62,26 +59,25 @@ public class StringConversionBuilder {
     private String convertBlocks(Iterable<String> blocks){
 
         String result = "";
-        boolean converted = false;
         for(String block :blocks){
-            for(Converter converter:converters){
-                if(converter.canConvert(block)){
-                    result += converter.convert(block);
-                    converted = true;
-                    break;
-                }
-            }
-            if(!converted)
-                result += "0";
-            else
-                converted = false;
+             result += convertBlock(block);
         }
         return result;
     }
 
+    private String convertBlock(String block){
+
+        for(Converter converter:converters){
+            if(converter.canConvert(block)){
+                return converter.convert(block);
+            }
+        }
+        return "0";
+    }
+
     public String buildConversion(String string){
 
-        Iterable<String> blocks = cutIntoBlocks(string);
+        Iterable<String> blocks = cutStringIntoBlocks(string);
         return convertBlocks(blocks);
     }
 }
